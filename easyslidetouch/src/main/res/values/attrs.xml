@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideTouch">
+        <!-- Styleable colors -->
+        <attr name="slideBackgroundColor" format="reference"/>
+        <attr name="slideButtonColor" format="reference"/>
+        <attr name="slideActionsColor" format="reference"/>
+        <attr name="slideActionsDisabledColor" format="reference"/>
+        <attr name="slideTextColor" format="reference"/>
+
+        <!-- Styleable dimensions -->
+        <attr name="slideTextSize" format="dimension"/>
+
+        <attr name="slideAllowNegative" format="boolean" />
+        <attr name="slideAllowPositive" format="boolean" />
+
+    </declare-styleable>
+</resources>
