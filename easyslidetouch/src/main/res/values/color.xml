@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="slide_background">#8a8eff</color>
+    <color name="slide_text">#6d72ff</color>
+    <color name="slide_button">#ffffff</color>
+</resources>
