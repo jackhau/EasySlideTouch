@@ -5,7 +5,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
@@ -48,15 +50,34 @@ public class EasySlideTouch extends ConstraintLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        count.setValue(count.getValue() + 1);
+//        count.setValue(count.getValue() + 1);
         switch (event.getAction()) {
-            case MotionEvent.ACTION_UP :
-                count.setValue(count.getValue() + 1);
+            case MotionEvent.ACTION_DOWN:
+
                 return true;
+            case MotionEvent.ACTION_MOVE:
+
+                return true;
+            case MotionEvent.ACTION_UP:
+
+                if (ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+                    Integer i = count.getValue();
+                    i += 1;
+                    count.setValue(i);
+                } else {
+                    Integer i = count.getValue();
+                    i--;
+                    count.setValue(i);
+                }
+                return true;
+
+
             default:
                 return false;
         }
 
 //        return super.onTouchEvent(event);
     }
+
+
 }
