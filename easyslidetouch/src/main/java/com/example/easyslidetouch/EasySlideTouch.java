@@ -1,6 +1,8 @@
 package com.example.easyslidetouch;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -19,6 +22,7 @@ public class EasySlideTouch extends ConstraintLayout {
     private TextView counterTv;
     private FrameLayout counterFl;
     private Float start = 0F;
+    private ConstraintLayout viewBackgroundCl;
 
     public EasySlideTouch(Context context) {
         super(context);
@@ -39,14 +43,21 @@ public class EasySlideTouch extends ConstraintLayout {
 
         counterTv = findViewById(R.id.viewCounterText);
         counterFl= findViewById(R.id.viewCounter);
+        viewBackgroundCl= findViewById(R.id.viewBackground);
 
         count = new MutableLiveData<>();
         count.setValue(0);
         count.observeForever(dd);
 
-//        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SlideTouch,
-//                0, 0);
+        if (attrs != null) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.EasySlideTouch,
+                    0, 0);
 
+            int drawableBackground = typedArray.getResourceId(R.styleable.EasySlideTouch_slideBackgroundColor, R.color.slide_background);
+            viewBackgroundCl.setBackground(ContextCompat.getDrawable(context, drawableBackground));
+
+            typedArray.recycle();
+        }
     }
 
     private Observer<Integer> dd = new Observer<Integer>() {
