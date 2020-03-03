@@ -8,9 +8,12 @@
     tools:context=".MainActivity">
 
     <com.example.easyslidetouch.EasySlideTouch
+        android:id="@+id/easy_slide"
         android:layout_width="130dp"
         android:layout_margin="40dp"
         android:layout_height="50dp"
+        app:slideTextColor="@color/black"
+        app:slideTextSize="12sp"
         app:slideBackgroundColor="@drawable/rectangle_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

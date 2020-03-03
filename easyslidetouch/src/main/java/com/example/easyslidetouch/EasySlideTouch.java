@@ -42,8 +42,8 @@ public class EasySlideTouch extends ConstraintLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.slide_touch, this, true);
 
         counterTv = findViewById(R.id.viewCounterText);
-        counterFl= findViewById(R.id.viewCounter);
-        viewBackgroundCl= findViewById(R.id.viewBackground);
+        counterFl = findViewById(R.id.viewCounter);
+        viewBackgroundCl = findViewById(R.id.viewBackground);
 
         count = new MutableLiveData<>();
         count.setValue(0);
@@ -54,7 +54,12 @@ public class EasySlideTouch extends ConstraintLayout {
                     0, 0);
 
             int drawableBackground = typedArray.getResourceId(R.styleable.EasySlideTouch_slideBackgroundColor, R.color.slide_background);
-            viewBackgroundCl.setBackground(ContextCompat.getDrawable(context, drawableBackground));
+            int textColor = typedArray.getResourceId(R.styleable.EasySlideTouch_slideTextColor, R.color.slide_text);
+            int textSize = typedArray.getDimensionPixelSize(R.styleable.EasySlideTouch_slideTextSize, 12);
+
+            setViewBackground(ContextCompat.getDrawable(context, drawableBackground));
+            setTextColor(ContextCompat.getColor(context, textColor));
+            setTextSize(textSize);
 
             typedArray.recycle();
         }
@@ -115,7 +120,19 @@ public class EasySlideTouch extends ConstraintLayout {
         count.setValue(i);
     }
 
-    private boolean getIsLtr () {
+    private boolean getIsLtr() {
         return ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_LTR;
+    }
+
+    public void setViewBackground(Drawable drawableBackground) {
+        viewBackgroundCl.setBackground(drawableBackground);
+    }
+
+    public void setTextColor(int color) {
+        counterTv.setTextColor(color);
+    }
+
+    public void setTextSize(int size) {
+        counterTv.setTextSize(size);
     }
 }

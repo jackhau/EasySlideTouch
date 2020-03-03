@@ -3,4 +3,5 @@
     <color name="slide_background">#8a8eff</color>
     <color name="slide_text">#6d72ff</color>
     <color name="slide_button">#ffffff</color>
+    <color name="black">#000000</color>
 </resources>
