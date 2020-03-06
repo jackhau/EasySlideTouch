@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.easyslidetouch.EasySlideTouch;
+import com.example.easyslidetouch.OnSlideChangeListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnSlideChangeListener {
 
     private EasySlideTouch easySlideTouch;
 
@@ -24,5 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
 //        easySlideTouch.setTextSize(14);
 
+        easySlideTouch.setOnSlideChangeListener(this);
+
+    }
+
+
+    @Override
+    public void OnSlideChange(int value) {
+        Toast.makeText(this, value + "", Toast.LENGTH_SHORT).show();
     }
 }

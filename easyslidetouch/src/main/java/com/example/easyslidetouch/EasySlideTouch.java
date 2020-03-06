@@ -23,6 +23,7 @@ public class EasySlideTouch extends ConstraintLayout {
     private FrameLayout counterFl;
     private Float start = 0F;
     private ConstraintLayout viewBackgroundCl;
+    private OnSlideChangeListener onSlideChangeListener;
 
     public EasySlideTouch(Context context) {
         super(context);
@@ -70,6 +71,8 @@ public class EasySlideTouch extends ConstraintLayout {
         public void onChanged(Integer value) {
             Log.i("###log", "retre" + value);
             counterTv.setText(value + "");
+            if (onSlideChangeListener != null)
+                onSlideChangeListener.OnSlideChange(value);
         }
     };
 
@@ -122,6 +125,10 @@ public class EasySlideTouch extends ConstraintLayout {
 
     private boolean getIsLtr() {
         return ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_LTR;
+    }
+
+    public void setOnSlideChangeListener(OnSlideChangeListener onSlideChangeListener) {
+        this.onSlideChangeListener = onSlideChangeListener;
     }
 
     public void setViewBackground(Drawable drawableBackground) {
