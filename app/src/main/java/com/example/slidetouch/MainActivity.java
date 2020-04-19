@@ -3,6 +3,7 @@ package com.example.slidetouch;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -20,11 +21,15 @@ public class MainActivity extends AppCompatActivity implements OnSlideChangeList
 
         easySlideTouch = findViewById(R.id.easy_slide);
 
-        easySlideTouch.setViewBackground(ContextCompat.getDrawable(this, R.drawable.ic_launcher_background));
+        easySlideTouch.setViewBackground(ContextCompat.getDrawable(this, R.drawable.round_corner_yellow));
 
-        easySlideTouch.setTextColor(ContextCompat.getColor(this, R.color.black));
+        easySlideTouch.setTextColor(ContextCompat.getColorStateList(this, R.color.selector_text_color));
 
 //        easySlideTouch.setTextSize(14);
+
+        easySlideTouch.setEnableSlide(false);
+
+        easySlideTouch.setViewBackgroundDisable(ContextCompat.getDrawable(this, R.drawable.ic_launcher_background));
 
         easySlideTouch.setOnSlideChangeListener(this);
 

@@ -1,6 +1,7 @@
 package com.example.easyslidetouch;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -24,6 +25,8 @@ public class EasySlideTouch extends ConstraintLayout {
     private Float start = 0F;
     private ConstraintLayout viewBackgroundCl;
     private OnSlideChangeListener onSlideChangeListener;
+    private Boolean enableSlide = true;
+    private Drawable drawableBackground, drawableBackgroundDisable;
 
     public EasySlideTouch(Context context) {
         super(context);
@@ -59,7 +62,7 @@ public class EasySlideTouch extends ConstraintLayout {
             int textSize = typedArray.getDimensionPixelSize(R.styleable.EasySlideTouch_slideTextSize, 12);
 
             setViewBackground(ContextCompat.getDrawable(context, drawableBackground));
-            setTextColor(ContextCompat.getColor(context, textColor));
+            setTextColor(ContextCompat.getColorStateList(context, textColor));
             setTextSize(textSize);
 
             typedArray.recycle();
@@ -78,6 +81,8 @@ public class EasySlideTouch extends ConstraintLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!enableSlide)
+            return true;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 start = event.getX();
@@ -131,11 +136,30 @@ public class EasySlideTouch extends ConstraintLayout {
         this.onSlideChangeListener = onSlideChangeListener;
     }
 
+    public void setEnableSlide(Boolean enableSlide) {
+        this.enableSlide = enableSlide;
+        if (!this.enableSlide) {
+            viewBackgroundCl.setBackground(drawableBackgroundDisable);
+            counterTv.setEnabled(false);
+        } else {
+            viewBackgroundCl.setBackground(drawableBackground);
+            counterTv.setEnabled(true);
+        }
+    }
+
+    public void setViewBackgroundDisable(Drawable drawableBackground) {
+        this.drawableBackgroundDisable = drawableBackground;
+        if (!enableSlide) {
+            viewBackgroundCl.setBackground(drawableBackground);
+        }
+    }
+
     public void setViewBackground(Drawable drawableBackground) {
+        this.drawableBackground = drawableBackground;
         viewBackgroundCl.setBackground(drawableBackground);
     }
 
-    public void setTextColor(int color) {
+    public void setTextColor(ColorStateList color) {
         counterTv.setTextColor(color);
     }
 
