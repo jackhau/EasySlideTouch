@@ -27,6 +27,8 @@ public class EasySlideTouch extends ConstraintLayout {
     private OnSlideChangeListener onSlideChangeListener;
     private Boolean enableSlide = true;
     private Drawable drawableBackground, drawableBackgroundDisable;
+    public Integer minValue = 0;
+    public Integer maxValue = 5;
 
     public EasySlideTouch(Context context) {
         super(context);
@@ -121,12 +123,22 @@ public class EasySlideTouch extends ConstraintLayout {
     private void add() {
         Integer i = count.getValue();
         i += 1;
+        if (maxValue < i) {
+            if (onSlideChangeListener != null)
+                onSlideChangeListener.OnSlideMax(i - 1);
+            return;
+        }
         count.setValue(i);
     }
 
     private void subtract() {
         Integer i = count.getValue();
         i -= 1;
+        if (minValue > i) {
+            if (onSlideChangeListener != null)
+                onSlideChangeListener.OnSlideMin(i + 1);
+            return;
+        }
         count.setValue(i);
     }
 
