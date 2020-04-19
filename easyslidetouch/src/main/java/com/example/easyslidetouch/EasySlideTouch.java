@@ -20,7 +20,7 @@ import androidx.lifecycle.Observer;
 public class EasySlideTouch extends ConstraintLayout {
 
     private MutableLiveData<Integer> count;
-    private TextView counterTv;
+    private TextView counterTv, textViewNegative, textViewPositive;
     private FrameLayout counterFl;
     private Float start = 0F;
     private ConstraintLayout viewBackgroundCl;
@@ -48,6 +48,8 @@ public class EasySlideTouch extends ConstraintLayout {
         counterTv = findViewById(R.id.viewCounterText);
         counterFl = findViewById(R.id.viewCounter);
         viewBackgroundCl = findViewById(R.id.viewBackground);
+        textViewNegative = findViewById(R.id.textViewNegative);
+        textViewPositive = findViewById(R.id.textViewPositive);
 
         count = new MutableLiveData<>();
         count.setValue(0);
@@ -140,11 +142,12 @@ public class EasySlideTouch extends ConstraintLayout {
         this.enableSlide = enableSlide;
         if (!this.enableSlide) {
             viewBackgroundCl.setBackground(drawableBackgroundDisable);
-            counterTv.setEnabled(false);
         } else {
             viewBackgroundCl.setBackground(drawableBackground);
-            counterTv.setEnabled(true);
         }
+        counterTv.setEnabled(enableSlide);
+        textViewNegative.setEnabled(enableSlide);
+        textViewPositive.setEnabled(enableSlide);
     }
 
     public void setViewBackgroundDisable(Drawable drawableBackground) {
@@ -161,6 +164,8 @@ public class EasySlideTouch extends ConstraintLayout {
 
     public void setTextColor(ColorStateList color) {
         counterTv.setTextColor(color);
+        textViewNegative.setTextColor(color);
+        textViewPositive.setTextColor(color);
     }
 
     public void setTextSize(int size) {

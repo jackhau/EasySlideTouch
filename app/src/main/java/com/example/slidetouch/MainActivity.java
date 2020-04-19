@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements OnSlideChangeList
 
 //        easySlideTouch.setTextSize(14);
 
-        easySlideTouch.setEnableSlide(false);
+//        easySlideTouch.setEnableSlide(false);
 
         easySlideTouch.setViewBackgroundDisable(ContextCompat.getDrawable(this, R.drawable.ic_launcher_background));
 
